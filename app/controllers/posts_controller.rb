@@ -25,7 +25,10 @@ class PostsController < ApplicationController
 
 	def update
 	  @post = Post.find(params[:id])
-	  @post.update(title: params[:title], description: params[:description])
+		@post.update(params.require(:post))
+		# note that line below works with form_tag, but not form_for, hence line above
+	  # @post.update(title: params[:title], description: params[:description])
 	  redirect_to post_path(@post)
+
 	end
 end
